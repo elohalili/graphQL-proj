@@ -30,7 +30,7 @@ const LibraryType = new GraphQLObjectType({
         book_ids: { type: GraphQLNonNull(GraphQLList(GraphQLString)) },
         books: {
             type: GraphQLNonNull(GraphQLList(BookType)),
-            resolve: (library) => books.find(book => book.isbn == library.books)
+            resolve: (library) => books.filter(book => library.book_ids.indexOf(book.isbn) >= 0)
         }
     })
 })
